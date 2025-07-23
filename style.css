@@ -1104,6 +1104,7 @@ body {
     /* Your abstract image */
     url('abstract.jpg');
   background-size: cover;
+  background-color: red;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed; /* Optional: creates parallax effect */
