@@ -1288,8 +1288,8 @@ body {
   border-radius: 50%;
   overflow: hidden; /* Ensures image is cropped to the circle */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   background: linear-gradient(135deg, var(--portfolio-primary), var(--portfolio-primary-hover));
   box-shadow: 0 10px 30px rgba(0, 191, 166, 0.3);
   margin: 0 auto;
