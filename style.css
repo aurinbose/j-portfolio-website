@@ -1273,52 +1273,76 @@ body {
 }
 
 /* About Section */
+/* -------------------------------------------------
+   ABOUT SECTION – RESPONSIVE, ACCESSIBLE, POLISHED
+--------------------------------------------------*/
+
+/* 1 ▸ Two-column grid ≥768 px; stacked layout below */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr;      /* photo | text */
   gap: var(--space-32);
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+@media (max-width: 767px) {
+  .about-grid {
+    grid-template-columns: 1fr;        /* single column */
+    text-align: center;                /* optional: centre text */
+  }
+}
+
+/* 2 ▸ Circular photo wrapper */
 .profile-photo {
-  width: 400px;
-  height: 400px;
+  --size: clamp(180px, 28vw, 400px);   /* smoothly scales with viewport */
+  width: var(--size);
+  height: var(--size);
   border-radius: 50%;
-  overflow: hidden; /* Ensures image is cropped to the circle */
+  overflow: hidden;                    /* crop to circle */
   display: flex;
-  align-items: left;
-  justify-content: left;
-  background: linear-gradient(135deg, var(--portfolio-primary), var(--portfolio-primary-hover));
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--portfolio-primary),
+    var(--portfolio-primary-hover)
+  );
   box-shadow: 0 10px 30px rgba(0, 191, 166, 0.3);
   margin: 0 auto;
-  transition: var(--transition-theme);
+  transition: transform 0.35s ease, var(--transition-theme);
   animation: pulse 3s ease-in-out infinite;
 }
 
+.profile-photo:hover {
+  transform: scale(1.06);
+  animation-play-state: paused;        /* freeze glow on hover */
+}
+
+/*  ➜ Disable pulse on people who prefer reduced motion or small screens */
+@media (prefers-reduced-motion: reduce), (max-width: 479px) {
+  .profile-photo {
+    animation: none;
+  }
+}
+
+/* 3 ▸ Image fills circle perfectly */
 .profile-photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* Fills the area, crops as needed, keeps aspect ratio */
-  border-radius: 50%; /* Ensures the image remains round within the container */
+  object-fit: cover;
   display: block;
+  border-radius: 50%;                  /* fallback for rare browsers */
 }
 
+/* Pulse keyframes remain unchanged */
 @keyframes pulse {
-  0%, 100% { 
-    box-shadow: 0 10px 30px rgba(0, 191, 166, 0.3);
-  }
-  50% { 
-    box-shadow: 0 15px 40px rgba(0, 191, 166, 0.4);
-  }
+  0%, 100% { box-shadow: 0 10px 30px rgba(0, 191, 166, 0.30); }
+  50%      { box-shadow: 0 15px 40px rgba(0, 191, 166, 0.40); }
 }
 
-.profile-photo:hover {
-  transform: scale(1.05);
-  animation-play-state: paused;
-}
-
+/* 4 ▸ Details list */
 .about-details {
   list-style: none;
   padding: 0;
@@ -1328,7 +1352,7 @@ body {
 .about-details li {
   padding: var(--space-8) 0;
   border-bottom: 1px solid var(--portfolio-border);
-  transition: var(--transition-theme);
+  transition: padding 0.25s ease, border-color 0.25s ease;
 }
 
 .about-details li:hover {
@@ -1337,7 +1361,7 @@ body {
 }
 
 .about-details strong {
-  color: var(--portfolio-primary) !important;
+  color: var(--portfolio-primary);
   margin-right: var(--space-8);
 }
 
