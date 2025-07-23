@@ -1296,7 +1296,7 @@ body {
 
 /* 2 ▸ Circular photo wrapper */
 .profile-photo {
-  --size: clamp(180px, 28vw, 400px);   /* smoothly scales with viewport */
+  --size: clamp(180px, 28vw, 300px);   /* smoothly scales with viewport */
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
