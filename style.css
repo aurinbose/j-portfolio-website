@@ -1102,7 +1102,7 @@ body {
     /* Subtle gradient overlay for text readability */
     linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 191, 166, 0.05)),
     /* Your abstract image */
-    url('abstract.jpg');
+    url('abstract.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
