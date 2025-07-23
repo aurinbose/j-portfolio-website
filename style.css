@@ -1304,6 +1304,7 @@ body {
   border-radius: 50%; /* Ensures the image remains round within the container */
   display: block;
 }
+
 @keyframes pulse {
   0%, 100% { 
     box-shadow: 0 10px 30px rgba(0, 191, 166, 0.3);
