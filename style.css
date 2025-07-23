@@ -1855,42 +1855,168 @@ body {
 }
 
 /* Contact Section Enhancements */
+/* Contact Actions (Email/LinkedIn buttons) */
+.contact-actions {
+  display: flex;
+  gap: var(--space-16);
+  justify-content: center;
+  margin: var(--space-32) 0;
+  flex-wrap: wrap;
+}
+
+/* Responsive adjustments for contact actions */
 @media (max-width: 640px) {
   .contact-actions {
     flex-direction: column;
     align-items: center;
-    gap: var(--space-12, 0.75rem);
+    gap: var(--space-12);
+  }
+  
+  .contact-actions .btn {
+    width: 100%;
+    max-width: 280px;
   }
 }
 
+/* Social Links Container */
 .social-links {
   display: flex;
   gap: var(--space-16);
   justify-content: center;
   margin-top: var(--space-24);
+  flex-wrap: wrap;
 }
 
+/* Responsive adjustments for social links */
+@media (max-width: 480px) {
+  .social-links {
+    gap: var(--space-12);
+  }
+}
+
+/* Individual Social Link Styling */
 .social-link {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  background: var(--portfolio-card-bg) !important;
-  border: 1px solid var(--portfolio-card-border);
-  color: var(--portfolio-text) !important;
-  transition: var(--transition-theme);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all var(--duration-normal) var(--ease-standard);
+  position: relative;
+  overflow: hidden;
 }
 
-.social-link:hover {
-  background: var(--portfolio-primary) !important;
-  border-color: var(--portfolio-primary);
-  color: var(--btn-primary-text) !important;
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: var(--btn-shadow-hover);
+/* Mobile sizing adjustments */
+@media (max-width: 480px) {
+  .social-link {
+    width: 44px;
+    height: 44px;
+  }
 }
 
+/* Hover and Focus States */
+.social-link:hover,
+.social-link:focus {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-md);
+  outline: none;
+}
+
+/* Focus-visible for better keyboard navigation */
+.social-link:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 2px;
+}
+
+/* Active state */
+.social-link:active {
+  background: var(--color-primary-active);
+  border-color: var(--color-primary-active);
+  transform: translateY(-1px) scale(1.02);
+  transition-duration: var(--duration-fast);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .social-link {
+    transition: background-color var(--duration-normal) var(--ease-standard), 
+                border-color var(--duration-normal) var(--ease-standard), 
+                color var(--duration-normal) var(--ease-standard);
+  }
+  
+  .social-link:hover,
+  .social-link:focus {
+    transform: none;
+  }
+}
+
+/* Dark mode specific adjustments */
+[data-color-scheme="dark"] .social-link {
+  background: var(--color-surface);
+  border-color: var(--color-card-border);
+  color: var(--color-text);
+}
+
+[data-color-scheme="dark"] .social-link:hover,
+[data-color-scheme="dark"] .social-link:focus {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-btn-primary-text);
+}
+
+/* Additional enhancement: Contact content centering */
+.contact-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-content p {
+  text-align: center;
+  margin-bottom: var(--space-24);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .social-link {
+    border-width: 2px;
+  }
+  
+  .social-link:hover,
+  .social-link:focus {
+    border-width: 3px;
+  }
+}
+
+/* Additional responsive styling for mobile portrait */
+@media (max-width: 480px) {
+  .contact-content {
+    padding: 0 var(--space-16);
+  }
+  
+  .contact-content p {
+    font-size: var(--font-size-base);
+  }
+  
+  .contact-actions {
+    margin: var(--space-24) 0;
+  }
+  
+  .contact-actions .btn {
+    font-size: var(--font-size-base);
+    padding: var(--space-8) var(--space-16);
+  }
+}
 /* Section Headers Enhancement */
 .section-header {
   text-align: center;
