@@ -1102,6 +1102,7 @@ body {
     radial-gradient(circle at 25% 25%, var(--portfolio-primary) 4px, transparent 4px),
     radial-gradient(circle at 75% 75%, var(--portfolio-primary) 2px, transparent 2px),
     linear-gradient(135deg, transparent 24%, rgba(0, 191, 166, 0.1) 25%, rgba(0, 191, 166, 0.1) 26%, transparent 27%),
+    url('abstract.webp'),
     linear-gradient(45deg, transparent 24%, rgba(0, 191, 166, 0.08) 25%, rgba(0, 191, 166, 0.08) 26%, transparent 27%);
   background-size: 80px 80px, 40px 40px, 60px 60px, 60px 60px;
   animation: float 20s ease-in-out infinite;
@@ -1296,7 +1297,7 @@ body {
 
 /* 2 ▸ Circular photo wrapper */
 .profile-photo {
-  --size: clamp(180px, 28vw, 300px);   /* smoothly scales with viewport */
+  --size: clamp(180px, 28vw, 400px);   /* smoothly scales with viewport */
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
