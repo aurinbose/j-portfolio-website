@@ -1582,6 +1582,7 @@ body {
   transition: var(--transition-theme);
   z-index: -1;
   background: 
+    /* Existing gradient patterns on top */
     repeating-linear-gradient(
       45deg,
       transparent,
@@ -1597,13 +1598,19 @@ body {
       rgba(0, 191, 166, 0.06) 32px
     ),
     radial-gradient(circle at 20% 80%, rgba(0, 191, 166, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 191, 166, 0.12) 0%, transparent 50%);
+    radial-gradient(circle at 80% 20%, rgba(0, 191, 166, 0.12) 0%, transparent 50%),
+    /* Abstract image as base layer */
+    url('abstract.jpg');
+  background-size: auto, auto, auto, auto, cover;
+  background-position: center;
+  background-repeat: no-repeat;
   animation: slide 30s linear infinite;
 }
 
 [data-color-scheme="dark"] .projects-background {
   opacity: 0.25;
   background: 
+    /* Enhanced gradient patterns for dark mode */
     repeating-linear-gradient(
       45deg,
       transparent,
@@ -1619,7 +1626,12 @@ body {
       rgba(0, 191, 166, 0.1) 37px
     ),
     radial-gradient(circle at 20% 80%, rgba(0, 191, 166, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 191, 166, 0.15) 0%, transparent 50%);
+    radial-gradient(circle at 80% 20%, rgba(0, 191, 166, 0.15) 0%, transparent 50%),
+    /* Abstract image as base layer */
+    url('abstract.jpg');
+  background-size: auto, auto, auto, auto, cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @keyframes slide {
