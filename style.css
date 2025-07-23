@@ -143,16 +143,6 @@
   --container-lg: 1024px;
   --container-xl: 1280px;
 
-   /* Profile photo */
-  .about-profile-img {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 2px 24px rgba(0,0,0,0.10);
-  display: block;
-  margin: 0 auto 1.5em auto;
-}
 }
 
 /* Dark mode colors */
@@ -306,6 +296,16 @@
   --color-error-rgb: var(--color-red-500-rgb);
   --color-warning-rgb: var(--color-orange-500-rgb);
   --color-info-rgb: var(--color-slate-500-rgb);
+}
+ /* Profile photo */
+  .about-profile-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+  display: block;
+  margin: 0 auto 1.5em auto;
 }
 
 /* Base styles */
