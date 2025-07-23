@@ -1857,10 +1857,10 @@ body {
 /* Contact Section Enhancements */
 .contact-actions {
   display: flex;
+  flex-wrap: wrap; /* allow wrapping on small screens */
   gap: var(--space-16);
   justify-content: center;
   margin: var(--space-32) 0;
-  flex-wrap: wrap;
 }
 
 .social-links {
