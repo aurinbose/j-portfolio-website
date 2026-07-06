@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurin Bose — Analytics Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0F1B2D;
+    --ink-2: #16233A;
+    --paper: #F7F5F1;
+    --steel: #6E93C7;
+    --steel-dim: #4A6FA5;
+    --amber: #D4A045;
+    --slate: #8B94A3;
+    --slate-dim: #5E6878;
+    --line: rgba(247,245,241,0.12);
+    --radius: 3px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection{ background: var(--amber); color: var(--ink); }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Focus visibility ---------- */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(15,27,45,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+  .brand{
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .brand .dot{ color: var(--amber); }
+  .navlinks{ display: flex; gap: 28px; }
+  .navlinks a{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--slate);
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+  .navlinks a:hover{ color: var(--paper); }
+  .navlinks .num{ color: var(--steel); margin-right: 2px; }
+  .nav-cta{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    padding: 8px 16px;
+    border: 1px solid var(--steel-dim);
+    border-radius: var(--radius);
+    color: var(--paper) !important;
+    transition: all 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--steel-dim); }
+
+  @media (max-width: 720px){
+    .navlinks{ display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    position: relative;
+  }
+
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--steel);
+    letter-spacing: 0.06em;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--steel);
+  }
+
+  h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.03;
+    letter-spacing: -0.01em;
+    max-width: 15ch;
+  }
+  h1 em{
+    font-style: italic;
+    font-weight: 450;
+    color: var(--steel);
+  }
+
+  .hero-sub{
+    margin-top: 26px;
+    max-width: 52ch;
+    font-size: 1.08rem;
+    color: #C9CCD3;
+    font-weight: 400;
+  }
+
+  .hero-actions{
+    margin-top: 38px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 13px 24px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    transition: transform 0.15s ease, background 0.15s ease;
+    display: inline-block;
+  }
+  .btn-primary:hover{ background: var(--amber); transform: translateY(-1px); }
+  .btn-secondary{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--slate);
+    padding: 13px 6px;
+    border-bottom: 1px solid var(--slate-dim);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-secondary:hover{ color: var(--paper); border-color: var(--paper); }
+
+  /* ---------- Pipeline diagram (signature element) ---------- */
+  .pipeline{
+    margin-top: 64px;
+    padding: 26px 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    overflow-x: auto;
+  }
+  .pipeline-label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--slate-dim);
+    margin-bottom: 18px;
+  }
+  .pipeline-label .ok{ color: #6FA37A; }
+  svg.flow{ display: block; min-width: 560px; width: 100%; height: auto; }
+
+  .flow text{
+    font-family: 'IBM Plex Mono', monospace;
+    fill: var(--paper);
+  }
+  .flow .node-label{ font-size: 12.5px; font-weight: 500; }
+  .flow .node-sub{ font-size: 9.5px; fill: var(--slate); }
+  .flow .node-box{
+    fill: var(--ink-2);
+    stroke: var(--line);
+    stroke-width: 1;
+  }
+  .flow .node-box.active{ stroke: var(--steel); }
+  .flow .conn{
+    stroke: var(--slate-dim);
+    stroke-width: 1.4;
+    fill: none;
+    stroke-dasharray: 4 4;
+  }
+  .flow .particle{
+    fill: var(--amber);
+  }
+  .flow .badge{
+    font-size: 8.5px;
+    fill: var(--steel);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 110px 0; border-top: 1px solid var(--line); }
+  .section-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .section-tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--steel);
+    letter-spacing: 0.03em;
+  }
+  h2{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    margin-top: 8px;
+  }
+  .section-note{
+    font-size: 0.92rem;
+    color: var(--slate);
+    max-width: 32ch;
+    text-align: right;
+  }
+  @media (max-width: 720px){
+    .section-note{ text-align: left; }
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+
+  /* ---------- Summary ---------- */
+  .summary-text{
+    font-size: 1.15rem;
+    line-height: 1.75;
+    max-width: 70ch;
+    color: #DCDEE3;
+    font-weight: 400;
+  }
+  .summary-text strong{ color: var(--paper); font-weight: 600; }
+
+  .stat-row{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    margin-top: 56px;
+    border: 1px solid var(--line);
+  }
+  .stat{
+    background: var(--ink);
+    padding: 26px 22px;
+  }
+  .stat-num{
+    font-family: 'Fraunces', serif;
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: var(--paper);
+  }
+  .stat-num span{ color: var(--amber); }
+  .stat-label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--slate);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  @media (max-width: 720px){
+    .stat-row{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---------- Experience ---------- */
+  .job{
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    padding: 44px 0;
+    border-top: 1px solid var(--line);
+  }
+  .job:first-of-type{ border-top: none; padding-top: 0; }
+  .job-meta .role{
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .job-meta .org{
+    margin-top: 8px;
+    font-size: 0.92rem;
+    color: var(--steel);
+    font-weight: 500;
+  }
+  .job-meta .dates{
+    margin-top: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--slate);
+  }
+  .job-meta .loc{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--slate-dim);
+    margin-top: 4px;
+  }
+
+  .workstream{ margin-bottom: 32px; }
+  .workstream:last-child{ margin-bottom: 0; }
+  .ws-head{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .ws-title{
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--paper);
+  }
+  .ws-stack{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--slate-dim);
+  }
+  .ws-stack::before{ content: '// '; color: var(--slate-dim); }
+
+  .bullets{ list-style: none; }
+  .bullets li{
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 11px;
+    font-size: 0.96rem;
+    color: #CBCED6;
+  }
+  .bullets li::before{
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--steel);
+    font-size: 0.85rem;
+  }
+  .bullets b{ color: var(--paper); font-weight: 600; }
+
+  @media (max-width: 780px){
+    .job{ grid-template-columns: 1fr; gap: 18px; }
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .skill-cell{
+    background: var(--ink);
+    padding: 28px 26px;
+  }
+  .skill-cell .cat{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+  .skill-cell .items{
+    font-size: 0.9rem;
+    color: #CBCED6;
+    line-height: 1.85;
+  }
+  @media (max-width: 780px){
+    .skills-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Certs / Education ---------- */
+  .two-col{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  @media (max-width: 780px){
+    .two-col{ grid-template-columns: 1fr; gap: 48px; }
+  }
+  .col-title{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--steel);
+    letter-spacing: 0.03em;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .entry{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line);
+    gap: 16px;
+  }
+  .entry:last-child{ border-bottom: none; }
+  .entry-name{ font-size: 0.95rem; font-weight: 500; color: var(--paper); }
+  .entry-sub{ font-size: 0.82rem; color: var(--slate); margin-top: 3px; }
+  .entry-date{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--slate-dim);
+    white-space: nowrap;
+  }
+
+  /* ---------- Contact / footer ---------- */
+  .contact-block{
+    text-align: center;
+    padding: 100px 0 60px;
+  }
+  .contact-block h2{
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    max-width: 20ch;
+    margin: 0 auto;
+  }
+  .contact-block .hero-sub{ margin: 22px auto 0; text-align: center; }
+  .contact-links{
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .contact-links a{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    padding: 13px 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: border-color 0.2s ease, color 0.2s ease;
+    color: var(--paper);
+  }
+  .contact-links a:hover{ border-color: var(--steel); color: var(--steel); }
+  .contact-links a.primary{
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
+  }
+  .contact-links a.primary:hover{ background: var(--amber); border-color: var(--amber); color: var(--ink); }
+
+  footer{
+    text-align: center;
+    padding: 30px 0 40px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--slate-dim);
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">Aurin Bose<span class="dot">.</span></div>
+    <div class="navlinks">
+      <a href="#experience"><span class="num">01</span>Experience</a>
+      <a href="#skills"><span class="num">02</span>Skills</a>
+      <a href="#credentials"><span class="num">03</span>Credentials</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero wrap" style="border-top:none;">
+    <div class="eyebrow">ANALYTICS CONSULTANT · EY GURGAON</div>
+    <h1>Turning fragmented enterprise data into <em>pipelines that hold up</em> at go-live.</h1>
+    <p class="hero-sub">Senior Data Analyst with 3+ years migrating, governing, and modelling data for global financial services and manufacturing clients — from Oracle-to-cloud migrations with minimal critical discrepancies at go-live, to AI-assisted analytics workflows.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="#experience" class="btn-secondary">View experience ↓</a>
+    </div>
+
+    <div class="pipeline reveal" id="pipeline-wrap">
+      <div class="pipeline-label"><span class="ok">✓</span> reconciliation: minimal critical discrepancies at go-live · migrated 2+ business domains</div>
+      <svg class="flow" viewBox="0 0 900 160" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram of Aurin's Oracle to PostgreSQL and AWS data migration pipeline">
+        <!-- connectors -->
+        <path class="conn" d="M120,80 L245,80"/>
+        <path class="conn" d="M365,80 L490,80"/>
+        <path class="conn" d="M610,80 L735,80"/>
+
+        <!-- node 1: Oracle -->
+        <rect class="node-box active" x="10" y="45" width="110" height="70" rx="3"/>
+        <text class="node-label" x="65" y="76" text-anchor="middle">Oracle</text>
+        <text class="node-sub" x="65" y="93" text-anchor="middle">on-prem source</text>
+
+        <!-- node 2: SQL transform -->
+        <rect class="node-box" x="245" y="45" width="120" height="70" rx="3"/>
+        <text class="node-label" x="305" y="70" text-anchor="middle">SQL ETL</text>
+        <text class="node-sub" x="305" y="87" text-anchor="middle">mapping +</text>
+        <text class="node-sub" x="305" y="99" text-anchor="middle">reconciliation</text>
+
+        <!-- node 3: AWS -->
+        <rect class="node-box" x="490" y="45" width="120" height="70" rx="3"/>
+        <text class="node-label" x="550" y="76" text-anchor="middle">AWS</text>
+        <text class="node-sub" x="550" y="93" text-anchor="middle">S3 / DynamoDB</text>
+
+        <!-- node 4: PostgreSQL -->
+        <rect class="node-box" x="735" y="45" width="150" height="70" rx="3"/>
+        <text class="node-label" x="810" y="76" text-anchor="middle">PostgreSQL</text>
+        <text class="node-sub" x="810" y="93" text-anchor="middle">cloud target</text>
+
+        <!-- particles animated along path -->
+        <circle class="particle" r="3.2">
+          <animateMotion dur="3.2s" repeatCount="indefinite" path="M65,80 L305,80 L550,80 L810,80"/>
+        </circle>
+        <circle class="particle" r="3.2" opacity="0.6">
+          <animateMotion dur="3.2s" begin="1.1s" repeatCount="indefinite" path="M65,80 L305,80 L550,80 L810,80"/>
+        </circle>
+      </svg>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">-- experience</div>
+          <h2>Work that had to be right the first time.</h2>
+        </div>
+        <p class="section-note">Four business-critical workstreams across cloud migration, governance, ESG, and applied AI.</p>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-meta">
+          <div class="role">Analytics Consultant</div>
+          <div class="org">Ernst & Young (EY)</div>
+          <div class="dates">Jun 2023 — Present</div>
+          <div class="loc">Gurgaon, India</div>
+        </div>
+        <div class="job-body">
+
+          <div class="workstream">
+            <div class="ws-head">
+              <span class="ws-title">Cloud Data Migration — Oracle to PostgreSQL + AWS</span>
+            </div>
+            <div class="ws-stack" style="margin-bottom:12px;">SQL · PostgreSQL · Oracle · AWS S3 / DynamoDB · GitHub Copilot</div>
+            <ul class="bullets">
+              <li>Architected end-to-end ingestion and notification pipelines migrating <b>Customer and Account</b> domains from legacy Oracle to PostgreSQL + AWS, enabling decommission of legacy infra across <b>2+ business domains</b>.</li>
+              <li>Built source-to-target reconciliation frameworks validating record counts and field-level accuracy — <b>minimal critical data discrepancies at go-live</b>.</li>
+              <li>Used GitHub Copilot daily for code review, test generation, and query optimisation, improving iteration speed and review efficiency.</li>
+            </ul>
+          </div>
+
+          <div class="workstream">
+            <div class="ws-head">
+              <span class="ws-title">Enterprise Data Governance</span>
+            </div>
+            <div class="ws-stack" style="margin-bottom:12px;">Power BI · Excel</div>
+            <ul class="bullets">
+              <li>Drafted enterprise data standards covering definitions, ownership, quality thresholds, and lineage — aligned to regulatory and audit requirements.</li>
+              <li>Ran a structured data criticality assessment scoring datasets by regulatory exposure and business impact, informing the client's investment roadmap.</li>
+              <li>Built Power BI dashboards tracking data quality KPIs and governance adoption for real-time leadership visibility.</li>
+            </ul>
+          </div>
+
+          <div class="workstream">
+            <div class="ws-head">
+              <span class="ws-title">ESG Data Integration — Enablon Platform</span>
+            </div>
+            <div class="ws-stack" style="margin-bottom:12px;">SQL · .NET · ETL</div>
+            <ul class="bullets">
+              <li>Designed integration workflows feeding sustainability data into Enablon, aligning source outputs to its data model across multiple entities.</li>
+              <li>Wrote advanced SQL for extraction, cleansing, and loading with business-rule translation and quality checks at each stage.</li>
+              <li>Contributed to .NET integration-layer development, building and testing data connectors between source systems and the ESG platform.</li>
+            </ul>
+          </div>
+
+          <div class="workstream">
+            <div class="ws-head">
+              <span class="ws-title">AI-Powered Analytics PoC — Natural Language Data Modelling</span>
+            </div>
+            <div class="ws-stack" style="margin-bottom:12px;">Snowflake · Oracle · LLM integration</div>
+            <ul class="bullets">
+              <li>Contributed to a PoC extracting data from Snowflake and Oracle sources and generating data models and business glossaries via natural language prompting.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-meta">
+          <div class="role">Production Support Analyst</div>
+          <div class="org">Avance Consulting <span style="color:var(--slate-dim); font-weight:400;">(contracted to TCS)</span></div>
+          <div class="dates">Sep 2020 — Mar 2022</div>
+          <div class="loc">Warsaw, Poland</div>
+        </div>
+        <div class="job-body">
+          <div class="workstream">
+            <ul class="bullets">
+              <li>Analysed production incident data in ServiceNow to identify root-cause patterns, enabling proactive resolution before client escalation.</li>
+              <li>Standardised weekly and monthly reporting on incident volume and SLAs, cutting ad-hoc requests via a self-serve cadence.</li>
+              <li>Executed PL/SQL and Excel-based validation for production releases — <b>zero data-accuracy defects</b> across release cycles.</li>
+              <li>Supported cross-timezone release management across Europe and Asia, aligning deployment schedules and post-release validation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">-- stack</div>
+          <h2>Tools, by what they're for.</h2>
+        </div>
+        <p class="section-note">Grouped by function, not vendor — the way the work actually breaks down.</p>
+      </div>
+
+      <div class="skills-grid reveal">
+        <div class="skill-cell">
+          <div class="cat">QUERYING</div>
+          <div class="items">SQL (MySQL, PostgreSQL, Oracle)<br>PL/SQL · Query optimisation<br>ETL scripting</div>
+        </div>
+        <div class="skill-cell">
+          <div class="cat">VISUALISATION</div>
+          <div class="items">Power BI (DAX, modelling)<br>Tableau<br>Excel (Advanced, Pivot Tables)</div>
+        </div>
+        <div class="skill-cell">
+          <div class="cat">PROGRAMMING</div>
+          <div class="items">Python (Pandas, NumPy, Matplotlib)<br>.NET (integration)<br>Java</div>
+        </div>
+        <div class="skill-cell">
+          <div class="cat">CLOUD & DATA</div>
+          <div class="items">AWS (S3, ECS, DynamoDB)<br>Google BigQuery · Snowflake<br>PostgreSQL · Databricks</div>
+        </div>
+        <div class="skill-cell">
+          <div class="cat">AI & DEV TOOLS</div>
+          <div class="items">GitHub Copilot · Git / GitHub<br>LLM workflow support<br>ServiceNow · Postman · IntelliJ</div>
+        </div>
+        <div class="skill-cell">
+          <div class="cat">CONCEPTS</div>
+          <div class="items">Data Migration · Governance<br>ETL Pipeline Design · Reconciliation<br>KPI Development · ESG Integration</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">-- credentials</div>
+          <h2>Certifications & education.</h2>
+        </div>
+      </div>
+
+      <div class="two-col reveal">
+        <div>
+          <div class="col-title">CERTIFICATIONS</div>
+          <div class="entry">
+            <div>
+              <div class="entry-name">Databricks Certified Data Analyst Associate</div>
+            </div>
+            <div class="entry-date">Nov 2024</div>
+          </div>
+          <div class="entry">
+            <div>
+              <div class="entry-name">Google Business Intelligence Professional Certificate</div>
+            </div>
+            <div class="entry-date">May 2023</div>
+          </div>
+          <div class="entry">
+            <div>
+              <div class="entry-name">Google Data Analytics Professional Certificate</div>
+            </div>
+            <div class="entry-date">Jan 2023</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-title">EDUCATION</div>
+          <div class="entry">
+            <div>
+              <div class="entry-name">M.Sc. Computer Systems and Networks</div>
+              <div class="entry-sub">Warsaw University of Technology, Poland</div>
+            </div>
+            <div class="entry-date">Sept 2022</div>
+          </div>
+          <div class="entry">
+            <div>
+              <div class="entry-name">B.E. (Hons) Computer Science</div>
+              <div class="entry-sub">BITS Pilani, India</div>
+            </div>
+            <div class="entry-date">Oct 2017</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top: 1px solid var(--line);">
+    <div class="wrap contact-block reveal">
+      <div class="section-tag" style="justify-content:center; display:flex;">-- get in touch</div>
+      <h2>Open to Data Analyst and Analytics Consultant roles in Gurugram and Noida.</h2>
+      <p class="hero-sub">Available for a conversation about how this experience maps to your team's data challenges.</p>
+      <div class="contact-links">
+        <a href="mailto:aurinbose@gmail.com" class="primary">aurinbose@gmail.com</a>
+        <a href="tel:+917605018291">+91 7605018291</a>
+        <a href="https://www.linkedin.com/in/aurin-bose" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/aurinbose" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Aurin Bose · Gurgaon, India · Built for recruiter review
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
